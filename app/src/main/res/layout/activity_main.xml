@@ -94,26 +94,71 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etSearchAddress"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/llSearchAddress"
+            android:visibility="gone"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search address..."
-            android:visibility="gone" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/etSearchBlock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search block height or hash..."
-            android:visibility="gone" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSearchAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:hint="Search address..."
+                android:inputType="text"
+                android:maxLength="15"
 
-        <EditText
-            android:id="@+id/etSearchTx"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/llSearchBlock"
+            android:visibility="gone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search tx hash..."
-            android:visibility="gone" />
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSearchBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:hint="Search block height or hash..."
+                android:inputType="text"
+                android:maxLength="15"
+
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/llSearchTx"
+            android:visibility="gone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSearchTx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:hint="Search tx hash..."
+                android:inputType="text"
+                android:maxLength="15"
+
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

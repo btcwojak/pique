@@ -1,12 +1,17 @@
 package com.spudg.pique
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityMainBinding
 import okhttp3.*
@@ -85,8 +90,8 @@ class MainActivity : AppCompatActivity() {
         getBlockList()
 
         bindingMain.tvSearchAddress.setOnClickListener {
-            if (bindingMain.etSearchAddress.visibility == View.VISIBLE) {
-                bindingMain.etSearchAddress.visibility = View.GONE
+            if (bindingMain.llSearchAddress.visibility == View.VISIBLE) {
+                bindingMain.llSearchAddress.visibility = View.GONE
                 bindingMain.tvSearchAddress.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(1F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleX(1F).duration = 75
@@ -94,22 +99,27 @@ class MainActivity : AppCompatActivity() {
                 bindingMain.tvSearchTx.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(1F).duration = 75
             } else {
-                bindingMain.etSearchAddress.visibility = View.VISIBLE
+                bindingMain.llSearchAddress.visibility = View.VISIBLE
                 bindingMain.tvSearchAddress.animate().scaleX(1.1F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(1.1F).duration = 75
-                bindingMain.etSearchBlock.visibility = View.GONE
+                bindingMain.llSearchBlock.visibility = View.GONE
                 bindingMain.tvSearchBlock.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleY(.9F).duration = 75
-                bindingMain.etSearchTx.visibility = View.GONE
+                bindingMain.llSearchTx.visibility = View.GONE
                 bindingMain.tvSearchTx.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(.9F).duration = 75
+            }
+
+            if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
+                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                imm?.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
         }
 
         bindingMain.tvSearchBlock.setOnClickListener {
-            if (bindingMain.etSearchBlock.visibility == View.VISIBLE) {
-                bindingMain.etSearchBlock.visibility = View.GONE
+            if (bindingMain.llSearchBlock.visibility == View.VISIBLE) {
+                bindingMain.llSearchBlock.visibility = View.GONE
                 bindingMain.tvSearchAddress.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(1F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleX(1F).duration = 75
@@ -117,23 +127,28 @@ class MainActivity : AppCompatActivity() {
                 bindingMain.tvSearchTx.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(1F).duration = 75
             } else {
-                bindingMain.etSearchAddress.visibility = View.GONE
+                bindingMain.llSearchAddress.visibility = View.GONE
                 bindingMain.tvSearchAddress.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(.9F).duration = 75
-                bindingMain.etSearchBlock.visibility = View.VISIBLE
+                bindingMain.llSearchBlock.visibility = View.VISIBLE
                 bindingMain.tvSearchBlock.animate().scaleX(1.1F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleY(1.1F).duration = 75
-                bindingMain.etSearchTx.visibility = View.GONE
+                bindingMain.llSearchTx.visibility = View.GONE
                 bindingMain.tvSearchTx.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(.9F).duration = 75
 
             }
 
+            if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
+                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                imm?.hideSoftInputFromWindow(view.windowToken, 0)
+            }
+
         }
 
         bindingMain.tvSearchTx.setOnClickListener {
-            if (bindingMain.etSearchTx.visibility == View.VISIBLE) {
-                bindingMain.etSearchTx.visibility = View.GONE
+            if (bindingMain.llSearchTx.visibility == View.VISIBLE) {
+                bindingMain.llSearchTx.visibility = View.GONE
                 bindingMain.tvSearchAddress.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(1F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleX(1F).duration = 75
@@ -141,15 +156,20 @@ class MainActivity : AppCompatActivity() {
                 bindingMain.tvSearchTx.animate().scaleX(1F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(1F).duration = 75
             } else {
-                bindingMain.etSearchAddress.visibility = View.GONE
+                bindingMain.llSearchAddress.visibility = View.GONE
                 bindingMain.tvSearchAddress.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchAddress.animate().scaleY(.9F).duration = 75
-                bindingMain.etSearchBlock.visibility = View.GONE
+                bindingMain.llSearchBlock.visibility = View.GONE
                 bindingMain.tvSearchBlock.animate().scaleX(.9F).duration = 75
                 bindingMain.tvSearchBlock.animate().scaleY(.9F).duration = 75
-                bindingMain.etSearchTx.visibility = View.VISIBLE
+                bindingMain.llSearchTx.visibility = View.VISIBLE
                 bindingMain.tvSearchTx.animate().scaleX(1.1F).duration = 75
                 bindingMain.tvSearchTx.animate().scaleY(1.1F).duration = 75
+            }
+
+            if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
+                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                imm?.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
         }
