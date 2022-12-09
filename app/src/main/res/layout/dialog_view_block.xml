@@ -4,99 +4,134 @@
     android:layout_height="match_parent"
     android:background="@drawable/dialog_background_solid"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="18dp">
+
+    <TextView
+        android:id="@+id/tvBlockTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Block #780,000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvGeneralInfo"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/open_sans_light"
+        android:text="tvTimestamp, tvAveRate, tvTxCount, tvSize"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Block 780,000"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:text="Total block reward"/>
 
     <TextView
-        android:id="@+id/tvTimestamp"
+        android:id="@+id/tvReward"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
         android:layout_width="match_parent"
-        android:text="tvTimestamp"/>
+        android:text="tvReward"/>
 
     <TextView
-        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvHeight"/>
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Total subsidy"/>
 
     <TextView
-        android:id="@+id/tvAveRate"
+        android:id="@+id/tvSubsidy"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
         android:layout_width="match_parent"
-        android:text="tvAveRate"/>
+        android:text="tvSubsidy"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Total fees"/>
+
+    <TextView
+        android:id="@+id/tvFees"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_width="match_parent"
+        android:text="tvFees"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Average transaction fee"/>
+
+    <TextView
+        android:id="@+id/tvAveFee"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_width="match_parent"
+        android:text="tvAveFee"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Fee rate range"/>
+
+    <TextView
+        android:id="@+id/tvFeeRange"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_width="match_parent"
+        android:text="tvLowFee - tvHighFee"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Blockhash"/>
 
     <TextView
         android:id="@+id/tvId"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:fontFamily="@font/open_sans_light"
         android:text="tvId"/>
 
     <TextView
-        android:id="@+id/tvTxCount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvTxCount"/>
-
-    <TextView
-        android:id="@+id/tvSize"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvSize"/>
-
-    <TextView
-        android:id="@+id/tvReward"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvReward"/>
-
-    <TextView
-        android:id="@+id/tvSubsidy"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvSubsidy"/>
-
-    <TextView
-        android:id="@+id/tvFees"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvFees"/>
-
-    <TextView
-        android:id="@+id/tvAveFee"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvAveFee"/>
-
-    <TextView
-        android:id="@+id/tvHighFee"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvHighFee"/>
-
-    <TextView
-        android:id="@+id/tvLowFee"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="tvLowFee"/>
+        android:fontFamily="@font/open_sans_light"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Previous blockhash"/>
 
     <TextView
         android:id="@+id/tvPrevHash"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
         android:layout_width="match_parent"
         android:text="tvPrevHash"/>
-
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"

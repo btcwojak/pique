@@ -20,6 +20,12 @@ import com.spudg.pique.databinding.ActivityMainBinding
 import com.spudg.pique.databinding.DialogViewBlockBinding
 import okhttp3.*
 import java.io.IOException
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +50,26 @@ class MainActivity : AppCompatActivity() {
             val totalFees: String,
         )
 
+    }
+
+    private fun getTimeAgo(date: String): String {
+        val now = Calendar.getInstance().timeInMillis
+        val then = date + "000"
+        val diff = now.toFloat() - then.toFloat()
+        val formatted = (diff / 1000 / 60).roundToInt()
+        return if (formatted == 0) {
+            "just now"
+        } else if (formatted == 1) {
+            "1 minute ago"
+        } else if (formatted in 2..59) {
+            "$formatted minutes ago"
+        } else if (formatted in 60..89) {
+            "1 hour ago"
+        } else if ((formatted.toDouble() / 60) >= 1.5) {
+            (formatted.toDouble() / 60).roundToInt().toString() + " hours ago"
+        } else {
+            "$formatted minutes ago"
+        }
     }
 
     private lateinit var bindingMain: ActivityMainBinding
@@ -245,27 +271,32 @@ class MainActivity : AppCompatActivity() {
                         blockDialog.setContentView(view)
                         blockDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-                        bindingDialogViewBlock.tvTimestamp.text = block.timestamp
-                        bindingDialogViewBlock.tvHeight.text = block.height
-                        bindingDialogViewBlock.tvAveFee.text = block.aveRate
+                        val format = DecimalFormat("#,###.00")
+                        val formatRounded = DecimalFormat("#,###")
+
+                        bindingDialogViewBlock.tvBlockTitle.text = "Block #" + formatRounded.format(block.height.toFloat())
+
+                        bindingDialogViewBlock.tvGeneralInfo.text = "Mined " + getTimeAgo(block.timestamp) + ". This block contains " + formatRounded.format(block.txCount.toFloat()) + " transactions, an average fee rate of ~" + block.aveRate + " sat/vB and has a size of " + (BigDecimal(block.size.toDouble() / 1000000).setScale(
+                            2,
+                            RoundingMode.HALF_UP
+                        )).toString() + " MB."
+                        bindingDialogViewBlock.tvReward.text = formatRounded.format(block.reward.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvSubsidy.text = formatRounded.format(block.subsidy.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvFees.text = formatRounded.format(block.fees.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvAveFee.text = formatRounded.format(block.aveFee.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvFeeRange.text = formatRounded.format(block.lowFee.toFloat()) + " - " + formatRounded.format(block.highFee.toFloat()) + " sat/vB"
                         bindingDialogViewBlock.tvId.text = block.id
-                        bindingDialogViewBlock.tvTxCount.text = block.txCount
-                        bindingDialogViewBlock.tvSize.text = block.size
-                        bindingDialogViewBlock.tvReward.text = block.reward
-                        bindingDialogViewBlock.tvSubsidy.text = block.subsidy
-                        bindingDialogViewBlock.tvFees.text = block.fees
-                        bindingDialogViewBlock.tvAveFee.text = block.aveFee
-                        bindingDialogViewBlock.tvHighFee.text = block.highFee
-                        bindingDialogViewBlock.tvLowFee.text = block.lowFee
                         bindingDialogViewBlock.tvPrevHash.text = block.prevHash
+
+                        bindingDialogViewBlock.btnClose.setOnClickListener {
+                            blockDialog.dismiss()
+                        }
 
                         blockDialog.show()
 
                     })
                 } else {
                     Log.e("Pique", "API returned code " + response.code().toString())
-
-
                 }
             }
         })
