@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background_solid"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Block 780,000"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvTimestamp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvTimestamp"/>
+
+    <TextView
+        android:id="@+id/tvHeight"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvHeight"/>
+
+    <TextView
+        android:id="@+id/tvAveRate"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvAveRate"/>
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvId"/>
+
+    <TextView
+        android:id="@+id/tvTxCount"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvTxCount"/>
+
+    <TextView
+        android:id="@+id/tvSize"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvSize"/>
+
+    <TextView
+        android:id="@+id/tvReward"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvReward"/>
+
+    <TextView
+        android:id="@+id/tvSubsidy"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvSubsidy"/>
+
+    <TextView
+        android:id="@+id/tvFees"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvFees"/>
+
+    <TextView
+        android:id="@+id/tvAveFee"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvAveFee"/>
+
+    <TextView
+        android:id="@+id/tvHighFee"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvAveFee"/>
+
+    <TextView
+        android:id="@+id/tvLowFee"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvAveFee"/>
+
+    <TextView
+        android:id="@+id/tvPrevHash"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="tvPrevHash"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/open_sans_light"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Done"
+            android:textColor="#673AB7" />
+
+    </LinearLayout>
+
+</LinearLayout>

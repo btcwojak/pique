@@ -174,7 +174,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
     }
 
     private fun getBlockList() {
