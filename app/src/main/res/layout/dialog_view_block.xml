@@ -80,13 +80,13 @@
         android:id="@+id/tvHighFee"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="tvAveFee"/>
+        android:text="tvHighFee"/>
 
     <TextView
         android:id="@+id/tvLowFee"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="tvAveFee"/>
+        android:text="tvLowFee"/>
 
     <TextView
         android:id="@+id/tvPrevHash"

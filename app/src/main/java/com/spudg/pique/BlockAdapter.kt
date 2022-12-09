@@ -1,10 +1,21 @@
 package com.spudg.pique
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.spudg.pique.databinding.BlockRowBinding
+import okhttp3.*
+import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -59,6 +70,12 @@ class BlockAdapter(private val context: Context, private val blocks: ArrayList<B
             binding.tvTxCount.text = format.format(blocks[position].txCount.toFloat()) + " txs"
             binding.tvAveRate.text = "~" + blocks[position].aveRate + " sat/vB"
             binding.tvId.text = "..." + blocks[position].id.takeLast(5)
+
+            binding.clBlock.setOnClickListener {
+                if (context is MainActivity) {
+                    context.showBlock(blocks[position].id)
+                }
+            }
 
         }
 
