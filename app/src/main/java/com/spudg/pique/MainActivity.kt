@@ -169,29 +169,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         bindingMain.btnSearchBlock.setOnClickListener {
-            val input = bindingMain.etSearchBlock.text
-            if (input?.isNotEmpty() == true) {
+            val input = bindingMain.etSearchBlock.text.toString()
+            if (input?.isNotEmpty()) {
                 if (input.length == 64) {
-                    showBlock(input.toString())
+                    showBlock(input)
                 } else {
-                    val url = "https://mempool.space/api/block-height/$input"
-                    val request = Request.Builder().url(url).build()
-                    val client = OkHttpClient()
-                    client.newCall(request).enqueue(object : Callback {
-                        override fun onFailure(call: Call, e: IOException) {
-                            Log.e("ERROR", "Failed to get block details.")
-                        }
-
-                        override fun onResponse(call: Call, response: Response) {
-                            if (response.code().toString() == "200") {
-                                Handler(Looper.getMainLooper()).post(Runnable {
-                                    showBlock(response.body()!!.string())
-                                })
-                            } else {
-                                Log.e("Pique", "API returned code " + response.code().toString())
-                            }
-                        }
-                    })
+                    showBlockUsingHeight(input)
                 }
 
             } else {
@@ -201,8 +184,28 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getBlockHash(height: String) {
+    private fun showBlockUsingHeight(height: String) {
+        val url = "https://mempool.space/api/block-height/$height"
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR", "Failed to get block details.")
+            }
 
+            override fun onResponse(call: Call, response: Response) {
+                if (response.code().toString() == "200") {
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        showBlock(response.body()!!.string())
+                    })
+                } else {
+                    Log.e("Pique", "API returned code " + response.code().toString())
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        Toast.makeText(this@MainActivity, "Block height not found.", Toast.LENGTH_SHORT).show()
+                    })
+                }
+            }
+        })
     }
 
     private fun getBlockList() {
@@ -304,7 +307,6 @@ class MainActivity : AppCompatActivity() {
                         blockDialog.setContentView(view)
                         blockDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-                        val format = DecimalFormat("#,###.00")
                         val formatRounded = DecimalFormat("#,###")
 
                         bindingDialogViewBlock.tvBlockTitle.text =
@@ -342,8 +344,12 @@ class MainActivity : AppCompatActivity() {
 
                     })
                 } else {
+                    Handler(Looper.getMainLooper()).post(Runnable {
                     Log.e("Pique", "API returned code " + response.code().toString())
-                }
+
+                    Toast.makeText(this@MainActivity, "Blockhash not found.", Toast.LENGTH_SHORT).show()
+                    })
+                    }
             }
         })
 
