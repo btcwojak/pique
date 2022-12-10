@@ -9,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -167,6 +168,41 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        bindingMain.btnSearchBlock.setOnClickListener {
+            val input = bindingMain.etSearchBlock.text
+            if (input?.isNotEmpty() == true) {
+                if (input.length == 64) {
+                    showBlock(input.toString())
+                } else {
+                    val url = "https://mempool.space/api/block-height/$input"
+                    val request = Request.Builder().url(url).build()
+                    val client = OkHttpClient()
+                    client.newCall(request).enqueue(object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            Log.e("ERROR", "Failed to get block details.")
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            if (response.code().toString() == "200") {
+                                Handler(Looper.getMainLooper()).post(Runnable {
+                                    showBlock(response.body()!!.string())
+                                })
+                            } else {
+                                Log.e("Pique", "API returned code " + response.code().toString())
+                            }
+                        }
+                    })
+                }
+
+            } else {
+                Toast.makeText(this, "Enter a block height or hash.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
+    private fun getBlockHash(height: String) {
+
     }
 
     private fun getBlockList() {
@@ -221,8 +257,6 @@ class MainActivity : AppCompatActivity() {
                     })
                 } else {
                     Log.e("Pique", "API returned code " + response.code().toString())
-
-
                 }
             }
         })

@@ -149,7 +149,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Done"
-            android:textColor="#673AB7" />
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 
