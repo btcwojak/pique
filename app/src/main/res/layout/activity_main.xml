@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="#121212"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView android:layout_marginTop="10dp" android:layout_gravity="center_horizontal" android:layout_width="192dp" android:layout_height="108dp" android:background="@drawable/pique" />
+    <ImageView
+        android:layout_width="192dp"
+        android:layout_height="108dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/pique" />
 
     <TextView
         android:id="@+id/tvAppDesc"
@@ -86,77 +91,135 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:id="@+id/llSearchAddress"
-            android:visibility="gone"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etSearchAddress"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSearchAddress"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:singleLine="true"
-                android:imeOptions="actionDone"
-                android:hint="Search address..."
-                android:inputType="text"
-                android:maxLength="15"
+                android:layout_marginStart="20dp"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent"
+                android:layout_marginEnd="20dp">
 
-                android:maxLines="1" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSearchAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:hint="Search address..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="1"
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:singleLine="true" />
 
-        <com.google.android.material.textfield.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/btnSearchAddress"
+                android:layout_width="40dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/submit_background" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/llSearchBlock"
-            android:visibility="gone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etSearchBlock"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSearchBlock"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:singleLine="true"
-                android:imeOptions="actionDone"
-                android:hint="Search block height or hash..."
-                android:inputType="text"
-                android:maxLength="15"
+                android:layout_marginStart="20dp"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent"
+                android:layout_marginEnd="20dp" >
 
-                android:maxLines="1" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSearchBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:hint="Search block height or hash..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/btnSearchBlock"
+                android:layout_width="40dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/submit_background" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/llSearchTx"
-            android:visibility="gone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etSearchTx"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSearchTx"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:singleLine="true"
-                android:imeOptions="actionDone"
-                android:hint="Search tx hash..."
-                android:inputType="text"
-                android:maxLength="15"
+                android:layout_marginStart="20dp"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent"
+                android:layout_marginEnd="20dp" >
 
-                android:maxLines="1" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSearchTx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:hint="Search tx hash..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/btnSearchTx"
+                android:layout_width="40dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/submit_background" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,8 +1,6 @@
 package com.spudg.pique
 
-import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,7 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityMainBinding
 import com.spudg.pique.databinding.DialogViewBlockBinding
@@ -24,7 +21,6 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
@@ -105,7 +101,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
-                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                val imm =
+                    ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
                 imm?.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
@@ -134,7 +131,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
-                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                val imm =
+                    ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
                 imm?.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
@@ -162,7 +160,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (bindingMain.llSearchAddress.visibility == View.GONE && bindingMain.llSearchBlock.visibility == View.GONE && bindingMain.llSearchTx.visibility == View.GONE) {
-                val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+                val imm =
+                    ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
                 imm?.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
@@ -198,7 +197,7 @@ class MainActivity : AppCompatActivity() {
                                     block.size,
                                     block.id,
                                     block.extras.avgFeeRate,
-                                            block.extras.reward,
+                                    block.extras.reward,
                                     (block.extras.reward.toFloat() - block.extras.totalFees.toFloat()).toString(),
                                     block.extras.totalFees,
                                     block.extras.avgFee,
@@ -248,21 +247,21 @@ class MainActivity : AppCompatActivity() {
                                 response.body()?.string(),
                                 MainActivity.JsonInfo.BlockSummary::class.java
                             )
-                                val block = BlockModel(
-                                    blockInfo.timestamp,
-                                    blockInfo.height,
-                                    blockInfo.tx_count,
-                                    blockInfo.size,
-                                    blockInfo.id,
-                                    blockInfo.extras.avgFeeRate,
-                                    blockInfo.extras.reward,
-                                    (blockInfo.extras.reward.toFloat() - blockInfo.extras.totalFees.toFloat()).toString(),
-                                    blockInfo.extras.totalFees,
-                                    blockInfo.extras.avgFee,
-                                    blockInfo.extras.feeRange[blockInfo.extras.feeRange.size - 1],
-                                    blockInfo.extras.feeRange[0],
-                                    blockInfo.previousblockhash
-                                )
+                        val block = BlockModel(
+                            blockInfo.timestamp,
+                            blockInfo.height,
+                            blockInfo.tx_count,
+                            blockInfo.size,
+                            blockInfo.id,
+                            blockInfo.extras.avgFeeRate,
+                            blockInfo.extras.reward,
+                            (blockInfo.extras.reward.toFloat() - blockInfo.extras.totalFees.toFloat()).toString(),
+                            blockInfo.extras.totalFees,
+                            blockInfo.extras.avgFee,
+                            blockInfo.extras.feeRange[blockInfo.extras.feeRange.size - 1],
+                            blockInfo.extras.feeRange[0],
+                            blockInfo.previousblockhash
+                        )
 
                         val blockDialog = Dialog(this@MainActivity, R.style.Theme_Dialog)
                         blockDialog.setCancelable(false)
@@ -274,17 +273,30 @@ class MainActivity : AppCompatActivity() {
                         val format = DecimalFormat("#,###.00")
                         val formatRounded = DecimalFormat("#,###")
 
-                        bindingDialogViewBlock.tvBlockTitle.text = "Block #" + formatRounded.format(block.height.toFloat())
+                        bindingDialogViewBlock.tvBlockTitle.text =
+                            "Block #" + formatRounded.format(block.height.toFloat())
 
-                        bindingDialogViewBlock.tvGeneralInfo.text = "Mined " + getTimeAgo(block.timestamp) + ". This block contains " + formatRounded.format(block.txCount.toFloat()) + " transactions, an average fee rate of ~" + block.aveRate + " sat/vB and has a size of " + (BigDecimal(block.size.toDouble() / 1000000).setScale(
-                            2,
-                            RoundingMode.HALF_UP
-                        )).toString() + " MB."
-                        bindingDialogViewBlock.tvReward.text = formatRounded.format(block.reward.toFloat()) + " sats"
-                        bindingDialogViewBlock.tvSubsidy.text = formatRounded.format(block.subsidy.toFloat()) + " sats"
-                        bindingDialogViewBlock.tvFees.text = formatRounded.format(block.fees.toFloat()) + " sats"
-                        bindingDialogViewBlock.tvAveFee.text = formatRounded.format(block.aveFee.toFloat()) + " sats"
-                        bindingDialogViewBlock.tvFeeRange.text = formatRounded.format(block.lowFee.toFloat()) + " - " + formatRounded.format(block.highFee.toFloat()) + " sat/vB"
+                        bindingDialogViewBlock.tvGeneralInfo.text =
+                            "Mined " + getTimeAgo(block.timestamp) + ". This block contains " + formatRounded.format(
+                                block.txCount.toFloat()
+                            ) + " transactions, an average fee rate of ~" + block.aveRate + " sat/vB and has a size of " + (BigDecimal(
+                                block.size.toDouble() / 1000000
+                            ).setScale(
+                                2,
+                                RoundingMode.HALF_UP
+                            )).toString() + " MB."
+                        bindingDialogViewBlock.tvReward.text =
+                            formatRounded.format(block.reward.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvSubsidy.text =
+                            formatRounded.format(block.subsidy.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvFees.text =
+                            formatRounded.format(block.fees.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvAveFee.text =
+                            formatRounded.format(block.aveFee.toFloat()) + " sats"
+                        bindingDialogViewBlock.tvFeeRange.text =
+                            formatRounded.format(block.lowFee.toFloat()) + " - " + formatRounded.format(
+                                block.highFee.toFloat()
+                            ) + " sat/vB"
                         bindingDialogViewBlock.tvId.text = block.id
                         bindingDialogViewBlock.tvPrevHash.text = block.prevHash
 
