@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
         android:text="Block #780,000"
+        android:textStyle="bold"
         android:textSize="18sp" />
 
     <TextView

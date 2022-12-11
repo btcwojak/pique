@@ -28,8 +28,9 @@ class IOAdapter(private val context: Context, private val IOs: ArrayList<IOModel
 
         with(holder) {
 
+            val formatRounded = DecimalFormat("#,###")
             binding.address.text = IOs[position].address
-            binding.amount.text = IOs[position].amount
+            binding.amount.text = formatRounded.format(IOs[position].amount.toFloat()) + " sats"
 
         }
 

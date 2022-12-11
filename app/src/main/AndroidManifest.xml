@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Pique"
         tools:targetApi="31">
         <activity
+            android:name=".ViewTransaction"
+            android:exported="false" />
+        <activity
             android:name=".ViewAddress"
             android:exported="false" />
         <activity
