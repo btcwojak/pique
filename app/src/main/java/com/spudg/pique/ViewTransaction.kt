@@ -32,6 +32,10 @@ class ViewTransaction : AppCompatActivity() {
         setContentView(view)
 
         getTransaction(Constants.SELECTED_TX)
+
+        bindingViewTransaction.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getDate(ms: String, dateFormat: String): String {
