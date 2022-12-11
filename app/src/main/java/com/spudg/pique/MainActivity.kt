@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityMainBinding
 import com.spudg.pique.databinding.DialogViewBlockBinding
+import com.spudg.pique.databinding.DialogViewTxBinding
 import okhttp3.*
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -47,6 +49,43 @@ class MainActivity : AppCompatActivity() {
             val totalFees: String,
         )
 
+        data class TransactionSummary(
+           val txid: String,
+           val size: String,
+           val weight: String,
+           val fee: String,
+           val vin: Array<InputInfo>,
+           val vout: Array<OutputInfo>,
+           val status: TransactionExtras
+        )
+
+        data class TransactionExtras(
+            val confirmed: String,
+            val block_height: String,
+            val block_time: String
+        )
+
+        data class InputInfo(
+            val prevout: InputExtras
+        )
+
+        data class InputExtras(
+            val scriptpubkey_address: String,
+            val value: String
+        )
+
+        data class OutputInfo(
+            val scriptpubkey_address: String,
+            val value: String
+        )
+
+    }
+
+    private fun getDate(ms: String, dateFormat: String): String {
+        val formatter = SimpleDateFormat(dateFormat);
+        val calendar = Calendar.getInstance();
+        calendar.timeInMillis = (ms + "000").toLong();
+        return formatter.format(calendar.time);
     }
 
     private fun getTimeAgo(date: String): String {
@@ -71,6 +110,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bindingMain: ActivityMainBinding
     private lateinit var bindingDialogViewBlock: DialogViewBlockBinding
+    private lateinit var bindingDialogViewTx: DialogViewTxBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -170,15 +210,25 @@ class MainActivity : AppCompatActivity() {
 
         bindingMain.btnSearchBlock.setOnClickListener {
             val input = bindingMain.etSearchBlock.text.toString()
-            if (input?.isNotEmpty()) {
+            if (input.isNotEmpty()) {
                 if (input.length == 64) {
                     showBlock(input)
                 } else {
                     showBlockUsingHeight(input)
                 }
-
             } else {
                 Toast.makeText(this, "Enter a block height or hash.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        bindingMain.btnSearchTx.setOnClickListener {
+            val input = bindingMain.etSearchTx.text.toString()
+            if (input.isNotEmpty()) {
+                if (input.length == 64) {
+                    showTransaction(input)
+                } else {
+                    Toast.makeText(this, "Invalid transaction ID.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -355,5 +405,106 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showTransaction(txid: String) {
+        val url = "https://mempool.space/api/tx/$txid"
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR", "Failed to get transaction details.")
+            }
 
+            override fun onResponse(call: Call, response: Response) {
+                val gson = Gson()
+                if (response.code().toString() == "200") {
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        val txInfo: MainActivity.JsonInfo.TransactionSummary =
+                            gson.fromJson(
+                                response.body()?.string(),
+                                MainActivity.JsonInfo.TransactionSummary::class.java
+                            )
+
+                        val inputs: ArrayList<IOModel> = ArrayList()
+                        val outputs: ArrayList<IOModel> = ArrayList()
+
+                        for (input in txInfo.vin) {
+                            inputs.add(IOModel(input.prevout.scriptpubkey_address, input.prevout.value))
+                        }
+
+                        for (output in txInfo.vout) {
+                            outputs.add(IOModel(output.scriptpubkey_address, output.value))
+                        }
+
+                        val tx = TransactionModel(
+                            txInfo.txid,
+                            txInfo.size,
+                            txInfo.weight,
+                            txInfo.fee,
+                            txInfo.status.confirmed,
+                            txInfo.status.block_height,
+                            txInfo.status.block_time,
+                            inputs,
+                            outputs
+                        )
+
+                        val txDialog = Dialog(this@MainActivity, R.style.Theme_Dialog)
+                        txDialog.setCancelable(false)
+                        bindingDialogViewTx = DialogViewTxBinding.inflate(layoutInflater)
+                        val view = bindingDialogViewTx.root
+                        txDialog.setContentView(view)
+                        txDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                        val formatRounded = DecimalFormat("#,###")
+
+                        bindingDialogViewTx.tvTxId.text =
+                            "This transaction's ID is " + tx.txid + "."
+                        bindingDialogViewTx.tvSize.text =
+                            formatRounded.format(tx.size.toFloat()) + " B"
+                        bindingDialogViewTx.tvTxFee.text =
+                            formatRounded.format(tx.fee.toFloat()) + " sats"
+                        bindingDialogViewTx.tvWeight.text =
+                            tx.weight + " WU"
+                        if (tx.confirmed == "true") {
+                            bindingDialogViewTx.tvConfirmed.text = "Confirmed in block " + tx.blockHeight + " on " + getDate(tx.blockTime, "dd MMMM yyyy, hh:mm") + " UTC."
+                        } else {
+                            bindingDialogViewTx.tvConfirmed.text = "Not yet confirmed."
+                        }
+
+                        if (inputs.size > 0) {
+                            bindingDialogViewTx.rvInputs.visibility = View.VISIBLE
+                            val manager = LinearLayoutManager(this@MainActivity)
+                            bindingDialogViewTx.rvInputs.layoutManager = manager
+                            val ioAdapter = IOAdapter(this@MainActivity, inputs)
+                            bindingDialogViewTx.rvInputs.adapter = ioAdapter
+                        } else {
+                            bindingDialogViewTx.rvInputs.visibility = View.GONE
+                        }
+
+                        if (outputs.size > 0) {
+                            bindingDialogViewTx.rvOutputs.visibility = View.VISIBLE
+                            val manager = LinearLayoutManager(this@MainActivity)
+                            bindingDialogViewTx.rvOutputs.layoutManager = manager
+                            val ioAdapter = IOAdapter(this@MainActivity, outputs)
+                            bindingDialogViewTx.rvOutputs.adapter = ioAdapter
+                        } else {
+                            bindingDialogViewTx.rvOutputs.visibility = View.GONE
+                        }
+
+                        bindingDialogViewTx.btnClose.setOnClickListener {
+                            txDialog.dismiss()
+                        }
+
+                        txDialog.show()
+
+                    })
+                } else {
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        Log.e("Pique", "API returned code " + response.code().toString())
+
+                        Toast.makeText(this@MainActivity, "Transaction ID not found.", Toast.LENGTH_SHORT).show()
+                    })
+                }
+            }
+        })
+    }
 }
