@@ -80,6 +80,28 @@ class MainActivity : AppCompatActivity() {
             val value: String
         )
 
+        data class AddressSummary(
+            val address: String,
+            val chain_stats: ChainInfo,
+            val mempool_stats: MempoolInfo
+        )
+
+        data class ChainInfo(
+            val funded_txo_count: String,
+            val funded_txo_sum: String,
+            val spent_txo_count: String,
+            val spent_txo_sum: String,
+            val tx_count: String
+        )
+
+        data class MempoolInfo(
+            val funded_txo_count: String,
+            val funded_txo_sum: String,
+            val spent_txo_count: String,
+            val spent_txo_sum: String,
+            val tx_count: String
+        )
+
     }
 
     private fun getTimeAgo(date: String): String {
@@ -201,6 +223,17 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        bindingMain.btnSearchAddress.setOnClickListener {
+            val input = bindingMain.etSearchAddress.text.toString()
+            if (input.isNotEmpty()) {
+                Constants.SELECTED_ADDRESS = input
+                val intent = Intent(this, ViewAddress::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Enter an address.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         bindingMain.btnSearchBlock.setOnClickListener {
             val input = bindingMain.etSearchBlock.text.toString()
             if (input.isNotEmpty()) {
@@ -224,6 +257,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Invalid transaction ID.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "Enter a transaction ID (64 chars).", Toast.LENGTH_SHORT).show()
             }
         }
 

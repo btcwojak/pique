@@ -129,6 +129,8 @@ class ViewTransaction : AppCompatActivity() {
                         Log.e("Pique", "API returned code " + response.code().toString())
 
                         Toast.makeText(this@ViewTransaction, "Transaction ID not found.", Toast.LENGTH_SHORT).show()
+
+                        finish()
                     })
                 }
             }

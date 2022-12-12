@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:padding="18dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/back_background" />
+
+        <TextView
+            android:id="@+id/tvAddressTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Viewing address"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAddressInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="This address, 1wiz18xYmhRX6xStj2b9t1rwWX4GKUgpv, has 5 inputs and 2 outputs across 7 transactions." />
+
+    <TextView
+        android:id="@+id/tvMempool"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:text="There are no transactions in the mempool." />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Total sats funded"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvFunded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:text="tvFunded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Total sats spent"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvSpent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:text="tvSpent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Balance"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
+        android:text="tvBalance" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Confirmed transactions" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" >
+
+
+
+            <LinearLayout
+                android:id="@+id/llTransactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tvTransactions"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clipToPadding="false"
+                    android:paddingBottom="10dp" />
+
+            </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
