@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -16,14 +17,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityMainBinding
+import com.spudg.pique.databinding.DialogBlockInfoBinding
 import com.spudg.pique.databinding.DialogViewBlockBinding
-import com.spudg.pique.databinding.DialogViewTxBinding
 import okhttp3.*
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -51,13 +51,13 @@ class MainActivity : AppCompatActivity() {
         )
 
         data class TransactionSummary(
-           val txid: String,
-           val size: String,
-           val weight: String,
-           val fee: String,
-           val vin: Array<InputInfo>,
-           val vout: Array<OutputInfo>,
-           val status: TransactionExtras
+            val txid: String,
+            val size: String,
+            val weight: String,
+            val fee: String,
+            val vin: Array<InputInfo>,
+            val vout: Array<OutputInfo>,
+            val status: TransactionExtras
         )
 
         data class TransactionExtras(
@@ -126,6 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bindingMain: ActivityMainBinding
     private lateinit var bindingDialogViewBlock: DialogViewBlockBinding
+    private lateinit var bindingDialogBlockInfo: DialogBlockInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -258,9 +259,18 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Invalid transaction ID.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Enter a transaction ID (64 chars).", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Enter a transaction ID (64 chars).", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+
+        bindingMain.btnInfo.setOnClickListener {
+            showInfoDialog()
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            getBlockList()
+        }, 30000)
 
     }
 
@@ -281,7 +291,11 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Log.e("Pique", "API returned code " + response.code().toString())
                     Handler(Looper.getMainLooper()).post(Runnable {
-                        Toast.makeText(this@MainActivity, "Block height not found.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Block height not found.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     })
                 }
             }
@@ -425,14 +439,34 @@ class MainActivity : AppCompatActivity() {
                     })
                 } else {
                     Handler(Looper.getMainLooper()).post(Runnable {
-                    Log.e("Pique", "API returned code " + response.code().toString())
+                        Log.e("Pique", "API returned code " + response.code().toString())
 
-                    Toast.makeText(this@MainActivity, "Blockhash not found.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Blockhash not found.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     })
-                    }
+                }
             }
         })
+    }
 
+    private fun showInfoDialog() {
+        val infoDialog = Dialog(this@MainActivity, R.style.Theme_Dialog)
+        infoDialog.setCancelable(false)
+        bindingDialogBlockInfo = DialogBlockInfoBinding.inflate(layoutInflater)
+        val view = bindingDialogBlockInfo.root
+        infoDialog.setContentView(view)
+        infoDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        bindingDialogBlockInfo.infoText.movementMethod = LinkMovementMethod.getInstance()
+
+        bindingDialogBlockInfo.btnClose.setOnClickListener {
+            infoDialog.dismiss()
+        }
+
+        infoDialog.show()
     }
 
 

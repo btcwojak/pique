@@ -1,20 +1,15 @@
 package com.spudg.pique
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.spudg.pique.databinding.ActivityMainBinding
 import com.spudg.pique.databinding.ActivityViewTransactionBinding
-import com.spudg.pique.databinding.DialogViewTxBinding
 import okhttp3.*
 import java.io.IOException
 import java.text.DecimalFormat
@@ -68,7 +63,12 @@ class ViewTransaction : AppCompatActivity() {
                         val outputs: ArrayList<IOModel> = ArrayList()
 
                         for (input in txInfo.vin) {
-                            inputs.add(IOModel(input.prevout.scriptpubkey_address, input.prevout.value))
+                            inputs.add(
+                                IOModel(
+                                    input.prevout.scriptpubkey_address,
+                                    input.prevout.value
+                                )
+                            )
                         }
 
                         for (output in txInfo.vout) {
@@ -98,7 +98,11 @@ class ViewTransaction : AppCompatActivity() {
                         bindingViewTransaction.tvWeight.text =
                             tx.weight + " WU"
                         if (tx.confirmed == "true") {
-                            bindingViewTransaction.tvConfirmed.text = "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(tx.blockTime, "dd MMMM yyyy, hh:mm") + " UTC."
+                            bindingViewTransaction.tvConfirmed.text =
+                                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(
+                                    tx.blockTime,
+                                    "dd MMMM yyyy, hh:mm"
+                                ) + " UTC."
                         } else {
                             bindingViewTransaction.tvConfirmed.text = "Not yet confirmed."
                         }
@@ -128,7 +132,11 @@ class ViewTransaction : AppCompatActivity() {
                     Handler(Looper.getMainLooper()).post(Runnable {
                         Log.e("Pique", "API returned code " + response.code().toString())
 
-                        Toast.makeText(this@ViewTransaction, "Transaction ID not found.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@ViewTransaction,
+                            "Transaction ID not found.",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                         finish()
                     })

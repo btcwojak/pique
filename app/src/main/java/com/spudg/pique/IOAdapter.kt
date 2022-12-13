@@ -4,13 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.spudg.pique.databinding.BlockRowBinding
 import com.spudg.pique.databinding.IoRowBinding
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.*
-import kotlin.math.roundToInt
 
 class IOAdapter(private val context: Context, private val IOs: ArrayList<IOModel>) :
     RecyclerView.Adapter<IOAdapter.IOViewHolder>() {

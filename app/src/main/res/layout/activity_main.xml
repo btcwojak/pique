@@ -95,19 +95,19 @@
             android:id="@+id/llSearchAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilSearchAddress"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
-                android:layout_weight="10"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="10"
                 app:boxStrokeColor="@color/colorAccent"
-                app:hintTextColor="@color/colorAccent"
-                android:layout_marginEnd="20dp">
+                app:hintTextColor="@color/colorAccent">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etSearchAddress"
@@ -125,11 +125,11 @@
             <TextView
                 android:id="@+id/btnSearchAddress"
                 android:layout_width="40dp"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:layout_marginEnd="20dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/submit_background" />
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/submit_background"
+                android:foreground="?attr/selectableItemBackground" />
 
         </LinearLayout>
 
@@ -137,19 +137,19 @@
             android:id="@+id/llSearchBlock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilSearchBlock"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
-                android:layout_weight="10"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="10"
                 app:boxStrokeColor="@color/colorAccent"
-                app:hintTextColor="@color/colorAccent"
-                android:layout_marginEnd="20dp" >
+                app:hintTextColor="@color/colorAccent">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etSearchBlock"
@@ -167,11 +167,11 @@
             <TextView
                 android:id="@+id/btnSearchBlock"
                 android:layout_width="40dp"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:layout_marginEnd="20dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/submit_background" />
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/submit_background"
+                android:foreground="?attr/selectableItemBackground" />
 
         </LinearLayout>
 
@@ -179,19 +179,19 @@
             android:id="@+id/llSearchTx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilSearchTx"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
-                android:layout_weight="10"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="10"
                 app:boxStrokeColor="@color/colorAccent"
-                app:hintTextColor="@color/colorAccent"
-                android:layout_marginEnd="20dp" >
+                app:hintTextColor="@color/colorAccent">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etSearchTx"
@@ -209,11 +209,11 @@
             <TextView
                 android:id="@+id/btnSearchTx"
                 android:layout_width="40dp"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:layout_marginEnd="20dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/submit_background" />
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/submit_background"
+                android:foreground="?attr/selectableItemBackground" />
 
         </LinearLayout>
 
@@ -225,40 +225,90 @@
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray" />
 
-    <LinearLayout
-        android:id="@+id/llBlocks"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center_horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBlocks"
+        <LinearLayout
+            android:id="@+id/llBlocks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:clipToPadding="false"
-            android:paddingBottom="80dp" />
+            android:gravity="center_horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBlocks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clipToPadding="false"
+                android:paddingTop="30dp"
+                android:paddingBottom="80dp" />
 
-    <TextView
-        android:id="@+id/tvNoBlocks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:fontFamily="@font/open_sans_light"
-        android:gravity="center_horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="No blocks found."
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/block_title_background"
+            android:fontFamily="@font/open_sans_light"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans_light"
+                android:text="Latest blocks"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnInfo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/info_background" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNoBlocks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:fontFamily="@font/open_sans_light"
+            android:gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="No blocks found."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

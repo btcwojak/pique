@@ -6,13 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.spudg.pique.databinding.IoRowBinding
 import com.spudg.pique.databinding.TransactionRowBinding
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TransactionAdapter(private val context: Context, private val transactions: ArrayList<TransactionModel>) :
+class TransactionAdapter(
+    private val context: Context,
+    private val transactions: ArrayList<TransactionModel>
+) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     inner class TransactionViewHolder(val binding: TransactionRowBinding) :
@@ -44,9 +46,14 @@ class TransactionAdapter(private val context: Context, private val transactions:
             val formatRounded = DecimalFormat("#,###")
             binding.tvTxId.text = tx.txid
             binding.tvInputs.text = formatRounded.format(totalInputs.toString().toFloat()) + " sats"
-            binding.tvOutputs.text = formatRounded.format(totalOutputs.toString().toFloat()) + " sats"
+            binding.tvOutputs.text =
+                formatRounded.format(totalOutputs.toString().toFloat()) + " sats"
             binding.tvFee.text = formatRounded.format(tx.fee.toFloat()) + " sats"
-            binding.tvConfirmed.text = "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(tx.blockTime, "dd MMMM yyyy, hh:mm") + " UTC."
+            binding.tvConfirmed.text =
+                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(
+                    tx.blockTime,
+                    "dd MMMM yyyy, hh:mm"
+                ) + " UTC."
 
             binding.llTxRow.setOnClickListener {
                 Constants.SELECTED_TX = tx.txid

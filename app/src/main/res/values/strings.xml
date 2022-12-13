@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pique</string>
+    <string name="block_info">Auto-refreshes every 30 seconds, data powered by the <a href="https://mempool.space">mempool.space</a> API.</string>
 </resources>

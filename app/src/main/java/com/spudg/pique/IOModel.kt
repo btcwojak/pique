@@ -1,6 +1,6 @@
 package com.spudg.pique
 
-class IOModel (
+class IOModel(
     val address: String,
     val amount: String
 )

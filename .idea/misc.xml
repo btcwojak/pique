@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/back_background.xml" value="0.1495" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/block_background.xml" value="0.2" />
+        <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/block_title_background.xml" value="0.1495" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/dialog_background_solid.xml" value="0.2475" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/goto_background.xml" value="0.1495" />
@@ -17,6 +18,7 @@
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/address_row.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/block_row.xml" value="0.2" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/dialog_add_address.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/dialog_block_info.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/dialog_delete_address.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/dialog_view_block.xml" value="0.264" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/dialog_view_tx.xml" value="0.264" />

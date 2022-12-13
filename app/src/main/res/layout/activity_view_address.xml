@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#121212"
+    android:orientation="vertical"
     android:padding="18dp">
 
     <LinearLayout
@@ -14,21 +14,21 @@
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="40dp"
-            android:foreground="?attr/selectableItemBackground"
             android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/back_background" />
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/back_background"
+            android:foreground="?attr/selectableItemBackground" />
 
         <TextView
             android:id="@+id/tvAddressTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/open_sans_light"
             android:text="Viewing address"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -42,9 +42,9 @@
 
     <TextView
         android:id="@+id/tvMempool"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
         android:text="There are no transactions in the mempool." />
 
@@ -107,36 +107,36 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
         android:gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Confirmed transactions" />
+        android:text="Confirmed transactions"
+        android:textStyle="bold" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-            <LinearLayout
-                android:id="@+id/llTransactions"
+        <LinearLayout
+            android:id="@+id/llTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTransactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal">
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="10dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvTransactions"
-                    android:nestedScrollingEnabled="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:clipToPadding="false"
-                    android:paddingBottom="10dp" />
-
-            </LinearLayout>
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

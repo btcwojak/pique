@@ -1,20 +1,18 @@
 package com.spudg.pique
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.spudg.pique.databinding.ActivityMainBinding
 import com.spudg.pique.databinding.ActivityViewAddressBinding
 import okhttp3.*
 import java.io.IOException
 import java.text.DecimalFormat
-import java.util.ArrayList
 
 class ViewAddress : AppCompatActivity() {
 
@@ -70,24 +68,34 @@ class ViewAddress : AppCompatActivity() {
 
                         val formatRounded = DecimalFormat("#,###")
 
-                        bindingViewAddress.tvAddressInfo.text = "This address, ${address.address}, has ${address.fundedCount} inputs and ${address.spentCount} outputs across ${address.txCount} transactions."
+                        bindingViewAddress.tvAddressInfo.text =
+                            "This address, ${address.address}, has ${address.fundedCount} inputs and ${address.spentCount} outputs across ${address.txCount} transactions."
 
                         if ((address.fundedCountMem.toFloat() + address.spentCountMem.toFloat() + address.txCountMem.toFloat()) > 0F) {
-                            bindingViewAddress.tvMempool.text = "There are also ${address.fundedCountMem} inputs and ${address.spentCountMem} outputs across ${address.txCountMem} transactions in the mempool for this address (not included below)."
+                            bindingViewAddress.tvMempool.text =
+                                "There are also ${address.fundedCountMem} inputs and ${address.spentCountMem} outputs across ${address.txCountMem} transactions in the mempool for this address (not included below)."
                         } else {
-                            bindingViewAddress.tvMempool.text = "There are no transactions currently in the mempool for this address."
+                            bindingViewAddress.tvMempool.text =
+                                "There are no transactions currently in the mempool for this address."
                         }
 
-                        bindingViewAddress.tvFunded.text = formatRounded.format(address.fundedSum.toFloat()) + " sats"
-                        bindingViewAddress.tvSpent.text = formatRounded.format(address.spentSum.toFloat()) + " sats"
-                        bindingViewAddress.tvBalance.text = formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats"
+                        bindingViewAddress.tvFunded.text =
+                            formatRounded.format(address.fundedSum.toFloat()) + " sats"
+                        bindingViewAddress.tvSpent.text =
+                            formatRounded.format(address.spentSum.toFloat()) + " sats"
+                        bindingViewAddress.tvBalance.text =
+                            formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats"
 
                     })
                 } else {
                     Handler(Looper.getMainLooper()).post(Runnable {
                         Log.e("Pique", "API returned code " + response.code().toString())
 
-                        Toast.makeText(this@ViewAddress, "Address not recognised.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@ViewAddress,
+                            "Address not recognised.",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                         finish()
                     })
@@ -121,23 +129,31 @@ class ViewAddress : AppCompatActivity() {
                             val inputs: ArrayList<IOModel> = ArrayList()
                             val outputs: ArrayList<IOModel> = ArrayList()
                             for (input in tx.vin) {
-                                inputs.add(IOModel(input.prevout.scriptpubkey_address, input.prevout.value))
+                                inputs.add(
+                                    IOModel(
+                                        input.prevout.scriptpubkey_address,
+                                        input.prevout.value
+                                    )
+                                )
                             }
 
                             for (output in tx.vout) {
                                 outputs.add(IOModel(output.scriptpubkey_address, output.value))
                             }
-                            transactions.add(TransactionModel(
-                                tx.txid,
-                                tx.size,
-                                tx.weight,
-                                tx.fee,
-                                tx.status.confirmed,
-                                tx.status.block_height,
-                                tx.status.block_time,
-                                inputs,
-                                outputs
-                            ))
+
+                            transactions.add(
+                                TransactionModel(
+                                    tx.txid,
+                                    tx.size,
+                                    tx.weight,
+                                    tx.fee,
+                                    tx.status.confirmed,
+                                    tx.status.block_height,
+                                    tx.status.block_time,
+                                    inputs,
+                                    outputs
+                                )
+                            )
                         }
 
                         if (transactions.size > 0) {
@@ -151,13 +167,13 @@ class ViewAddress : AppCompatActivity() {
                         }
 
 
-
                     })
                 } else {
                     Handler(Looper.getMainLooper()).post(Runnable {
                         Log.e("Pique", "API returned code " + response.code().toString())
 
-                        Toast.makeText(this@ViewAddress, "Address not found.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ViewAddress, "Address not found.", Toast.LENGTH_SHORT)
+                            .show()
 
                         finish()
                     })
