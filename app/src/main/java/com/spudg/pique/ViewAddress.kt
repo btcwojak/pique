@@ -27,6 +27,7 @@ class ViewAddress : AppCompatActivity() {
         setContentView(view)
 
         getAddress(Constants.SELECTED_ADDRESS)
+        getTransactions(Constants.SELECTED_ADDRESS)
 
         bindingViewAddress.btnBack.setOnClickListener {
             finish()
@@ -87,6 +88,76 @@ class ViewAddress : AppCompatActivity() {
                         Log.e("Pique", "API returned code " + response.code().toString())
 
                         Toast.makeText(this@ViewAddress, "Address not recognised.", Toast.LENGTH_SHORT).show()
+
+                        finish()
+                    })
+                }
+            }
+        })
+    }
+
+    private fun getTransactions(address: String) {
+        val url = "https://mempool.space/api/address/$address/txs"
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR", "Failed to get transaction details.")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val gson = Gson()
+                if (response.code().toString() == "200") {
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        val txInfo: Array<MainActivity.JsonInfo.TransactionSummary> =
+                            gson.fromJson(
+                                response.body()?.string(),
+                                Array<MainActivity.JsonInfo.TransactionSummary>::class.java
+                            )
+
+                        val transactions: ArrayList<TransactionModel> = ArrayList()
+
+                        for (tx in txInfo) {
+                            val inputs: ArrayList<IOModel> = ArrayList()
+                            val outputs: ArrayList<IOModel> = ArrayList()
+                            for (input in tx.vin) {
+                                inputs.add(IOModel(input.prevout.scriptpubkey_address, input.prevout.value))
+                            }
+
+                            for (output in tx.vout) {
+                                outputs.add(IOModel(output.scriptpubkey_address, output.value))
+                            }
+                            transactions.add(TransactionModel(
+                                tx.txid,
+                                tx.size,
+                                tx.weight,
+                                tx.fee,
+                                tx.status.confirmed,
+                                tx.status.block_height,
+                                tx.status.block_time,
+                                inputs,
+                                outputs
+                            ))
+                        }
+
+                        if (transactions.size > 0) {
+                            bindingViewAddress.rvTransactions.visibility = View.VISIBLE
+                            val manager = LinearLayoutManager(this@ViewAddress)
+                            bindingViewAddress.rvTransactions.layoutManager = manager
+                            val txAdapter = TransactionAdapter(this@ViewAddress, transactions)
+                            bindingViewAddress.rvTransactions.adapter = txAdapter
+                        } else {
+                            bindingViewAddress.rvTransactions.visibility = View.GONE
+                        }
+
+
+
+                    })
+                } else {
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        Log.e("Pique", "API returned code " + response.code().toString())
+
+                        Toast.makeText(this@ViewAddress, "Address not found.", Toast.LENGTH_SHORT).show()
 
                         finish()
                     })

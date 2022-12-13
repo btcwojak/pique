@@ -119,8 +119,6 @@
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content" >
 
-
-
             <LinearLayout
                 android:id="@+id/llTransactions"
                 android:layout_width="match_parent"
@@ -129,7 +127,7 @@
                 android:gravity="center_horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/tvTransactions"
+                    android:id="@+id/rvTransactions"
                     android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
