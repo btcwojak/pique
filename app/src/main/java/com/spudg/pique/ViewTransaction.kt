@@ -98,7 +98,7 @@ class ViewTransaction : AppCompatActivity() {
                         bindingViewTransaction.tvWeight.text =
                             tx.weight + " WU"
                         if (tx.confirmed == "true") {
-                            bindingViewTransaction.tvConfirmed.text = "Confirmed in block " + tx.blockHeight + " on " + getDate(tx.blockTime, "dd MMMM yyyy, hh:mm") + " UTC."
+                            bindingViewTransaction.tvConfirmed.text = "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(tx.blockTime, "dd MMMM yyyy, hh:mm") + " UTC."
                         } else {
                             bindingViewTransaction.tvConfirmed.text = "Not yet confirmed."
                         }

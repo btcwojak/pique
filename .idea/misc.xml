@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/back_background.xml" value="0.1495" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/block_background.xml" value="0.2" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/dialog_background_solid.xml" value="0.2475" />
+        <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/goto_background.xml" value="0.1495" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/drawable/submit_background.xml" value="0.1575" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/font/open_sans_light.xml" value="0.21851851851851853" />
         <entry key="..\:/Users/itzsy/AndroidStudioProjects/Pique/app/src/main/res/layout/activity_address_list.xml" value="0.2" />

@@ -109,6 +109,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/open_sans_light"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:textStyle="bold"
