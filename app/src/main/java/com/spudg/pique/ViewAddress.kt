@@ -1,8 +1,12 @@
 package com.spudg.pique
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -10,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityViewAddressBinding
+import com.spudg.pique.databinding.DialogRefreshInfoBinding
 import okhttp3.*
 import java.io.IOException
 import java.text.DecimalFormat
@@ -17,6 +22,7 @@ import java.text.DecimalFormat
 class ViewAddress : AppCompatActivity() {
 
     private lateinit var bindingViewAddress: ActivityViewAddressBinding
+    private lateinit var bindingDialogRefreshInfo: DialogRefreshInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +36,15 @@ class ViewAddress : AppCompatActivity() {
         bindingViewAddress.btnBack.setOnClickListener {
             finish()
         }
+
+        bindingViewAddress.btnInfo.setOnClickListener {
+            showInfoDialog()
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            getAddress(Constants.SELECTED_ADDRESS)
+            getTransactions(Constants.SELECTED_ADDRESS)
+        }, 30000)
 
     }
 
@@ -180,6 +195,23 @@ class ViewAddress : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun showInfoDialog() {
+        val infoDialog = Dialog(this@ViewAddress, R.style.Theme_Dialog)
+        infoDialog.setCancelable(false)
+        bindingDialogRefreshInfo = DialogRefreshInfoBinding.inflate(layoutInflater)
+        val view = bindingDialogRefreshInfo.root
+        infoDialog.setContentView(view)
+        infoDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        bindingDialogRefreshInfo.infoText.movementMethod = LinkMovementMethod.getInstance()
+
+        bindingDialogRefreshInfo.btnClose.setOnClickListener {
+            infoDialog.dismiss()
+        }
+
+        infoDialog.show()
     }
 
 

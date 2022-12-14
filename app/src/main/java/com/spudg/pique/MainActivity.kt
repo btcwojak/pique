@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.spudg.pique.databinding.ActivityMainBinding
-import com.spudg.pique.databinding.DialogBlockInfoBinding
+import com.spudg.pique.databinding.DialogRefreshInfoBinding
 import com.spudg.pique.databinding.DialogViewBlockBinding
 import okhttp3.*
 import java.io.IOException
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bindingMain: ActivityMainBinding
     private lateinit var bindingDialogViewBlock: DialogViewBlockBinding
-    private lateinit var bindingDialogBlockInfo: DialogBlockInfoBinding
+    private lateinit var bindingDialogRefreshInfo: DialogRefreshInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -455,14 +455,14 @@ class MainActivity : AppCompatActivity() {
     private fun showInfoDialog() {
         val infoDialog = Dialog(this@MainActivity, R.style.Theme_Dialog)
         infoDialog.setCancelable(false)
-        bindingDialogBlockInfo = DialogBlockInfoBinding.inflate(layoutInflater)
-        val view = bindingDialogBlockInfo.root
+        bindingDialogRefreshInfo = DialogRefreshInfoBinding.inflate(layoutInflater)
+        val view = bindingDialogRefreshInfo.root
         infoDialog.setContentView(view)
         infoDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        bindingDialogBlockInfo.infoText.movementMethod = LinkMovementMethod.getInstance()
+        bindingDialogRefreshInfo.infoText.movementMethod = LinkMovementMethod.getInstance()
 
-        bindingDialogBlockInfo.btnClose.setOnClickListener {
+        bindingDialogRefreshInfo.btnClose.setOnClickListener {
             infoDialog.dismiss()
         }
 
