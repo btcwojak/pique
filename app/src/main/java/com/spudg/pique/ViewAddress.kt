@@ -82,6 +82,7 @@ class ViewAddress : AppCompatActivity() {
                         )
 
                         val formatRounded = DecimalFormat("#,###")
+                        val formatUSD = DecimalFormat("$#,###")
 
                         bindingViewAddress.tvAddressInfo.text =
                             "This address, ${address.address}, has ${address.fundedCount} inputs and ${address.spentCount} outputs across ${address.txCount} transactions."
@@ -95,11 +96,11 @@ class ViewAddress : AppCompatActivity() {
                         }
 
                         bindingViewAddress.tvFunded.text =
-                            formatRounded.format(address.fundedSum.toFloat()) + " sats"
+                            formatRounded.format(address.fundedSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(address.fundedSum.toFloat()/100000000)) + ")"
                         bindingViewAddress.tvSpent.text =
-                            formatRounded.format(address.spentSum.toFloat()) + " sats"
+                            formatRounded.format(address.spentSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(address.spentSum.toFloat()/100000000)) + ")"
                         bindingViewAddress.tvBalance.text =
-                            formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats"
+                            formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*((address.fundedSum.toFloat() - address.spentSum.toFloat())/100000000)) + ")"
 
                     })
                 } else {
@@ -215,6 +216,5 @@ class ViewAddress : AppCompatActivity() {
 
         infoDialog.show()
     }
-
 
 }

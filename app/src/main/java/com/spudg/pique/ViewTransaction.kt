@@ -88,13 +88,14 @@ class ViewTransaction : AppCompatActivity() {
                         )
 
                         val formatRounded = DecimalFormat("#,###")
+                        val formatUSD = DecimalFormat("$#,###")
 
                         bindingViewTransaction.tvTxId.text =
                             "This transaction's ID is " + tx.txid + "."
                         bindingViewTransaction.tvSize.text =
                             formatRounded.format(tx.size.toFloat()) + " B"
                         bindingViewTransaction.tvTxFee.text =
-                            formatRounded.format(tx.fee.toFloat()) + " sats"
+                            formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(tx.fee.toFloat()/100000000)) + ")"
                         bindingViewTransaction.tvWeight.text =
                             tx.weight + " WU"
                         if (tx.confirmed == "true") {

@@ -43,12 +43,13 @@ class TransactionAdapter(
                 totalOutputs += output.amount.toFloat()
             }
 
+            val formatUSD = DecimalFormat("$#,###")
             val formatRounded = DecimalFormat("#,###")
             binding.tvTxId.text = tx.txid
-            binding.tvInputs.text = formatRounded.format(totalInputs.toString().toFloat()) + " sats"
+            binding.tvInputs.text = formatRounded.format(totalInputs.toString().toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(totalInputs.toString().toFloat()/100000000)) + ")"
             binding.tvOutputs.text =
-                formatRounded.format(totalOutputs.toString().toFloat()) + " sats"
-            binding.tvFee.text = formatRounded.format(tx.fee.toFloat()) + " sats"
+                formatRounded.format(totalOutputs.toString().toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(totalOutputs.toString().toFloat()/100000000)) + ")"
+            binding.tvFee.text = formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(tx.fee.toFloat()/100000000)) + ")"
             binding.tvConfirmed.text =
                 "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(
                     tx.blockTime,

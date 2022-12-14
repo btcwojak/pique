@@ -24,8 +24,10 @@ class IOAdapter(private val context: Context, private val IOs: ArrayList<IOModel
         with(holder) {
 
             val formatRounded = DecimalFormat("#,###")
+            val formatUSD = DecimalFormat("$#,###")
+
             binding.address.text = IOs[position].address
-            binding.amount.text = formatRounded.format(IOs[position].amount.toFloat()) + " sats"
+            binding.amount.text = formatRounded.format(IOs[position].amount.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(IOs[position].amount.toFloat()/100000000)) + ")"
 
         }
 

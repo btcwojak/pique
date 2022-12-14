@@ -102,6 +102,14 @@ class MainActivity : AppCompatActivity() {
             val tx_count: String
         )
 
+        data class Price(
+            val bitcoin: Currency
+        )
+
+        data class Currency(
+            val usd: String
+        )
+
     }
 
     private fun getTimeAgo(date: String): String {
@@ -134,6 +142,7 @@ class MainActivity : AppCompatActivity() {
         val view = bindingMain.root
         setContentView(view)
 
+        setPrice()
         getBlockList()
 
         bindingMain.tvSearchAddress.setOnClickListener {
@@ -402,6 +411,7 @@ class MainActivity : AppCompatActivity() {
                         blockDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
                         val formatRounded = DecimalFormat("#,###")
+                        val formatUSD = DecimalFormat("$#,###")
 
                         bindingDialogViewBlock.tvBlockTitle.text =
                             "Block #" + formatRounded.format(block.height.toFloat())
@@ -416,13 +426,13 @@ class MainActivity : AppCompatActivity() {
                                 RoundingMode.HALF_UP
                             )).toString() + " MB."
                         bindingDialogViewBlock.tvReward.text =
-                            formatRounded.format(block.reward.toFloat()) + " sats"
+                            formatRounded.format(block.reward.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.reward.toFloat()/100000000)) + ")"
                         bindingDialogViewBlock.tvSubsidy.text =
-                            formatRounded.format(block.subsidy.toFloat()) + " sats"
+                            formatRounded.format(block.subsidy.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.subsidy.toFloat()/100000000)) + ")"
                         bindingDialogViewBlock.tvFees.text =
-                            formatRounded.format(block.fees.toFloat()) + " sats"
+                            formatRounded.format(block.fees.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.fees.toFloat()/100000000)) + ")"
                         bindingDialogViewBlock.tvAveFee.text =
-                            formatRounded.format(block.aveFee.toFloat()) + " sats"
+                            formatRounded.format(block.aveFee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.aveFee.toFloat()/100000000)) + ")"
                         bindingDialogViewBlock.tvFeeRange.text =
                             formatRounded.format(block.lowFee.toFloat()) + " - " + formatRounded.format(
                                 block.highFee.toFloat()
@@ -467,6 +477,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         infoDialog.show()
+    }
+
+    private fun setPrice() {
+        val urlPrice =
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        val requestPrice = Request.Builder().url(urlPrice).build()
+        val client = OkHttpClient()
+        client.newCall(requestPrice).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR", "Failed to get price details.")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Handler(Looper.getMainLooper()).post(Runnable {
+                    val gson = Gson()
+                    val priceInfo = gson.fromJson(
+                        response.body()?.string(),
+                        MainActivity.JsonInfo.Price::class.java
+                    )
+                    Constants.PRICE = priceInfo.bitcoin.usd
+                })
+            }
+        })
     }
 
 
