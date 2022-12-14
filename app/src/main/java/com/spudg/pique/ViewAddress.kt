@@ -177,8 +177,10 @@ class ViewAddress : AppCompatActivity() {
                             bindingViewAddress.rvTransactions.layoutManager = manager
                             val txAdapter = TransactionAdapter(this@ViewAddress, transactions)
                             bindingViewAddress.rvTransactions.adapter = txAdapter
+                            bindingViewAddress.tvNoTxs.visibility = View.GONE
                         } else {
-                            bindingViewAddress.rvTransactions.visibility = View.GONE
+                            bindingViewAddress.rvTransactions.visibility = View.INVISIBLE
+                            bindingViewAddress.tvNoTxs.visibility = View.VISIBLE
                         }
 
 
