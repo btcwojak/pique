@@ -61,10 +61,10 @@ class ViewAddress : AppCompatActivity() {
                 val gson = Gson()
                 if (response.code().toString() == "200") {
                     Handler(Looper.getMainLooper()).post(Runnable {
-                        val addressInfo: MainActivity.JsonInfo.AddressSummary =
+                        val addressInfo: Constants.Companion.JsonInfo.AddressSummary =
                             gson.fromJson(
                                 response.body()?.string(),
-                                MainActivity.JsonInfo.AddressSummary::class.java
+                                Constants.Companion.JsonInfo.AddressSummary::class.java
                             )
 
                         val address = AddressModel(
@@ -133,10 +133,10 @@ class ViewAddress : AppCompatActivity() {
                 val gson = Gson()
                 if (response.code().toString() == "200") {
                     Handler(Looper.getMainLooper()).post(Runnable {
-                        val txInfo: Array<MainActivity.JsonInfo.TransactionSummary> =
+                        val txInfo: Array<Constants.Companion.JsonInfo.TransactionSummary> =
                             gson.fromJson(
                                 response.body()?.string(),
-                                Array<MainActivity.JsonInfo.TransactionSummary>::class.java
+                                Array<Constants.Companion.JsonInfo.TransactionSummary>::class.java
                             )
 
                         val transactions: ArrayList<TransactionModel> = ArrayList()

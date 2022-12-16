@@ -53,10 +53,10 @@ class ViewTransaction : AppCompatActivity() {
                 val gson = Gson()
                 if (response.code().toString() == "200") {
                     Handler(Looper.getMainLooper()).post(Runnable {
-                        val txInfo: MainActivity.JsonInfo.TransactionSummary =
+                        val txInfo: Constants.Companion.JsonInfo.TransactionSummary =
                             gson.fromJson(
                                 response.body()?.string(),
-                                MainActivity.JsonInfo.TransactionSummary::class.java
+                                Constants.Companion.JsonInfo.TransactionSummary::class.java
                             )
 
                         val inputs: ArrayList<IOModel> = ArrayList()

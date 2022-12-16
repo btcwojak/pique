@@ -51,7 +51,7 @@ class TransactionAdapter(
                 formatRounded.format(totalOutputs.toString().toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(totalOutputs.toString().toFloat()/100000000)) + ")"
             binding.tvFee.text = formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(tx.fee.toFloat()/100000000)) + ")"
             binding.tvConfirmed.text =
-                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(
+                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + Constants.getDate(
                     tx.blockTime,
                     "dd MMMM yyyy, hh:mm"
                 ) + " UTC."
@@ -68,13 +68,6 @@ class TransactionAdapter(
 
     override fun getItemCount(): Int {
         return transactions.size
-    }
-
-    private fun getDate(ms: String, dateFormat: String): String {
-        val formatter = SimpleDateFormat(dateFormat);
-        val calendar = Calendar.getInstance();
-        calendar.timeInMillis = (ms + "000").toLong();
-        return formatter.format(calendar.time);
     }
 
 
