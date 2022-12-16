@@ -1,5 +1,6 @@
 package com.spudg.pique
 
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -7,6 +8,8 @@ import kotlin.math.roundToInt
 class Constants {
 
     companion object {
+
+        val formatRounded = DecimalFormat("#,###")
 
         var SELECTED_TX: String = "0"
         var SELECTED_ADDRESS: String = "0"
@@ -25,8 +28,12 @@ class Constants {
                 "$formatted minutes ago"
             } else if (formatted in 60..89) {
                 "1 hour ago"
-            } else if ((formatted.toDouble() / 60) >= 1.5) {
+            } else if ((formatted.toDouble() / 60) in 1.5..23.0) {
                 (formatted.toDouble() / 60).roundToInt().toString() + " hours ago"
+            } else if (((formatted.toDouble() / 60) > 23.0) && ((formatted.toDouble() / 60) < 36.0)) {
+                "1 day ago"
+            } else if ((formatted.toDouble() / 60) >= 36.0) {
+                "${formatRounded.format(((formatted.toDouble() / 60)/24).roundToInt())} days ago"
             } else {
                 "$formatted minutes ago"
             }
