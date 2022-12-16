@@ -387,6 +387,12 @@ class MainActivity : AppCompatActivity() {
                                 response.body()?.string(),
                                 MainActivity.JsonInfo.BlockSummary::class.java
                             )
+
+                        var prevHash = blockInfo.previousblockhash
+                        if (blockInfo.height == "0") {
+                            prevHash = "N/A - Genesis"
+                        }
+
                         val block = BlockModel(
                             blockInfo.timestamp,
                             blockInfo.height,
@@ -400,7 +406,7 @@ class MainActivity : AppCompatActivity() {
                             blockInfo.extras.avgFee,
                             blockInfo.extras.feeRange[blockInfo.extras.feeRange.size - 1],
                             blockInfo.extras.feeRange[0],
-                            blockInfo.previousblockhash
+                            prevHash
                         )
 
                         val blockDialog = Dialog(this@MainActivity, R.style.Theme_Dialog)
@@ -413,8 +419,13 @@ class MainActivity : AppCompatActivity() {
                         val formatRounded = DecimalFormat("#,###")
                         val formatUSD = DecimalFormat("$#,###")
 
-                        bindingDialogViewBlock.tvBlockTitle.text =
-                            "Block #" + formatRounded.format(block.height.toFloat())
+                        if (blockInfo.height == "0") {
+                            bindingDialogViewBlock.tvBlockTitle.text =
+                                "Block #" + formatRounded.format(block.height.toFloat()) + " (Genesis)"
+                        } else {
+                            bindingDialogViewBlock.tvBlockTitle.text =
+                                "Block #" + formatRounded.format(block.height.toFloat())
+                        }
 
                         bindingDialogViewBlock.tvGeneralInfo.text =
                             "Mined " + getTimeAgo(block.timestamp) + ". This block contains " + formatRounded.format(
