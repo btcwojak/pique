@@ -159,8 +159,11 @@ class ViewAddress : AppCompatActivity() {
                                 )
                             }
 
+
                             for (output in tx.vout) {
-                                outputs.add(IOModel(output.scriptpubkey_address, output.value))
+                                if (output.scriptpubkey_address != null) {
+                                    outputs.add(IOModel(output.scriptpubkey_address, output.value))
+                                }
                             }
 
                             transactions.add(
