@@ -8,8 +8,6 @@ import com.spudg.pique.databinding.BlockRowBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.*
-import kotlin.math.roundToInt
 
 class BlockAdapter(private val context: Context, private val blocks: ArrayList<BlockModel>) :
     RecyclerView.Adapter<BlockAdapter.BlockViewHolder>() {

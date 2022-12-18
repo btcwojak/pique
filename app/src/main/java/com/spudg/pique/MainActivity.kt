@@ -25,7 +25,6 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -335,13 +334,21 @@ class MainActivity : AppCompatActivity() {
                                 RoundingMode.HALF_UP
                             )).toString() + " MB."
                         bindingDialogViewBlock.tvReward.text =
-                            formatRounded.format(block.reward.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.reward.toFloat()/100000000)) + ")"
+                            formatRounded.format(block.reward.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (block.reward.toFloat() / 100000000)
+                            ) + ")"
                         bindingDialogViewBlock.tvSubsidy.text =
-                            formatRounded.format(block.subsidy.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.subsidy.toFloat()/100000000)) + ")"
+                            formatRounded.format(block.subsidy.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (block.subsidy.toFloat() / 100000000)
+                            ) + ")"
                         bindingDialogViewBlock.tvFees.text =
-                            formatRounded.format(block.fees.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.fees.toFloat()/100000000)) + ")"
+                            formatRounded.format(block.fees.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (block.fees.toFloat() / 100000000)
+                            ) + ")"
                         bindingDialogViewBlock.tvAveFee.text =
-                            formatRounded.format(block.aveFee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(block.aveFee.toFloat()/100000000)) + ")"
+                            formatRounded.format(block.aveFee.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (block.aveFee.toFloat() / 100000000)
+                            ) + ")"
                         bindingDialogViewBlock.tvFeeRange.text =
                             formatRounded.format(block.lowFee.toFloat()) + " - " + formatRounded.format(
                                 block.highFee.toFloat()

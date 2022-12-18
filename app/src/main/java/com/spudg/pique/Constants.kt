@@ -33,7 +33,7 @@ class Constants {
             } else if (((formatted.toDouble() / 60) > 23.0) && ((formatted.toDouble() / 60) < 36.0)) {
                 "1 day ago"
             } else if ((formatted.toDouble() / 60) >= 36.0) {
-                "${formatRounded.format(((formatted.toDouble() / 60)/24).roundToInt())} days ago"
+                "${formatRounded.format(((formatted.toDouble() / 60) / 24).roundToInt())} days ago"
             } else {
                 "$formatted minutes ago"
             }
@@ -129,9 +129,6 @@ class Constants {
         }
 
     }
-
-
-
 
 
 }

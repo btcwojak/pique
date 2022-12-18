@@ -13,8 +13,6 @@ import com.spudg.pique.databinding.ActivityViewTransactionBinding
 import okhttp3.*
 import java.io.IOException
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ViewTransaction : AppCompatActivity() {
 
@@ -95,7 +93,9 @@ class ViewTransaction : AppCompatActivity() {
                         bindingViewTransaction.tvSize.text =
                             formatRounded.format(tx.size.toFloat()) + " B"
                         bindingViewTransaction.tvTxFee.text =
-                            formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(tx.fee.toFloat()/100000000)) + ")"
+                            formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (tx.fee.toFloat() / 100000000)
+                            ) + ")"
                         bindingViewTransaction.tvWeight.text =
                             tx.weight + " WU"
                         if (tx.confirmed == "true") {

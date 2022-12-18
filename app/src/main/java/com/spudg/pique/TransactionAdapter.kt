@@ -8,8 +8,6 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.spudg.pique.databinding.TransactionRowBinding
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TransactionAdapter(
     private val context: Context,
@@ -46,10 +44,19 @@ class TransactionAdapter(
             val formatUSD = DecimalFormat("$#,###")
             val formatRounded = DecimalFormat("#,###")
             binding.tvTxId.text = tx.txid
-            binding.tvInputs.text = formatRounded.format(totalInputs.toString().toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(totalInputs.toString().toFloat()/100000000)) + ")"
+            binding.tvInputs.text = formatRounded.format(
+                totalInputs.toString().toFloat()
+            ) + " sats (" + formatUSD.format(
+                Constants.PRICE.toFloat() * (totalInputs.toString().toFloat() / 100000000)
+            ) + ")"
             binding.tvOutputs.text =
-                formatRounded.format(totalOutputs.toString().toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(totalOutputs.toString().toFloat()/100000000)) + ")"
-            binding.tvFee.text = formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(tx.fee.toFloat()/100000000)) + ")"
+                formatRounded.format(
+                    totalOutputs.toString().toFloat()
+                ) + " sats (" + formatUSD.format(
+                    Constants.PRICE.toFloat() * (totalOutputs.toString().toFloat() / 100000000)
+                ) + ")"
+            binding.tvFee.text =
+                formatRounded.format(tx.fee.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat() * (tx.fee.toFloat() / 100000000)) + ")"
             binding.tvConfirmed.text =
                 "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + Constants.getDate(
                     tx.blockTime,

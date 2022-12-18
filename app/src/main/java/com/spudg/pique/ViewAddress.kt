@@ -96,11 +96,17 @@ class ViewAddress : AppCompatActivity() {
                         }
 
                         bindingViewAddress.tvFunded.text =
-                            formatRounded.format(address.fundedSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(address.fundedSum.toFloat()/100000000)) + ")"
+                            formatRounded.format(address.fundedSum.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (address.fundedSum.toFloat() / 100000000)
+                            ) + ")"
                         bindingViewAddress.tvSpent.text =
-                            formatRounded.format(address.spentSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*(address.spentSum.toFloat()/100000000)) + ")"
+                            formatRounded.format(address.spentSum.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * (address.spentSum.toFloat() / 100000000)
+                            ) + ")"
                         bindingViewAddress.tvBalance.text =
-                            formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats (" + formatUSD.format(Constants.PRICE.toFloat()*((address.fundedSum.toFloat() - address.spentSum.toFloat())/100000000)) + ")"
+                            formatRounded.format(address.fundedSum.toFloat() - address.spentSum.toFloat()) + " sats (" + formatUSD.format(
+                                Constants.PRICE.toFloat() * ((address.fundedSum.toFloat() - address.spentSum.toFloat()) / 100000000)
+                            ) + ")"
 
                     })
                 } else {
