@@ -20,53 +20,53 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tx ID" />
+            android:text="@string/tx_id" />
 
         <TextView
             android:id="@+id/tvTxId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="Loading..." />
+            android:text="@string/loading" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Total inputs" />
+            android:text="@string/total_inputs" />
 
         <TextView
             android:id="@+id/tvInputs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="Loading..." />
+            android:text="@string/loading" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Total outputs" />
+            android:text="@string/total_outputs" />
 
         <TextView
             android:id="@+id/tvOutputs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="Loading..." />
+            android:text="@string/loading" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Fee" />
+            android:text="@string/fee" />
 
         <TextView
             android:id="@+id/tvFee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="Loading..." />
+            android:text="@string/loading" />
 
         <TextView
             android:id="@+id/tvConfirmed"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/open_sans_light"
-            android:text="Loading..." />
+            android:text="@string/loading" />
 
     </LinearLayout>
 

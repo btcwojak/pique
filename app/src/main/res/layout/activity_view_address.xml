@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/open_sans_light"
-            android:text="Viewing address"
+            android:text="@string/viewing_address"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:id="@+id/tvMempool"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <View
         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Total sats funded"
+        android:text="@string/total_sats_funded"
         android:textStyle="bold" />
 
     <TextView
@@ -68,14 +68,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Total sats spent"
+        android:text="@string/total_sats_spent"
         android:textStyle="bold" />
 
     <TextView
@@ -83,14 +83,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Balance"
+        android:text="@string/balance"
         android:textStyle="bold" />
 
     <TextView
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <View
         android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/open_sans_light"
-                android:text="Last 25 confirmed transactions"
+                android:text="@string/last_25_confirmed_transactions"
                 android:textStyle="bold" />
 
             <TextView
@@ -181,7 +181,7 @@
             android:gravity="center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="No transactions found for this address."
+            android:text="@string/no_transactions_found_for_this_address"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

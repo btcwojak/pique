@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..."
+        android:text="@string/loading"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <View
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Total block reward"
+        android:text="@string/total_block_reward"
         android:textStyle="bold" />
 
     <TextView
@@ -42,14 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Total subsidy"
+        android:text="@string/total_subsidy"
         android:textStyle="bold" />
 
     <TextView
@@ -57,14 +57,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Total fees"
+        android:text="@string/total_fees"
         android:textStyle="bold" />
 
     <TextView
@@ -72,14 +72,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Average transaction fee"
+        android:text="@string/average_transaction_fee"
         android:textStyle="bold" />
 
     <TextView
@@ -87,14 +87,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Fee rate range"
+        android:text="@string/fee_rate_range"
         android:textStyle="bold" />
 
     <TextView
@@ -102,14 +102,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Blockhash"
+        android:text="@string/blockhash"
         android:textStyle="bold" />
 
     <TextView
@@ -117,14 +117,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Previous blockhash"
+        android:text="@string/previous_blockhash"
         android:textStyle="bold" />
 
     <TextView
@@ -132,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -149,7 +149,7 @@
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Done"
+            android:text="@string/done"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>

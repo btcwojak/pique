@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/open_sans_light"
-            android:text="Viewing transaction"
+            android:text="@string/viewing_transaction"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <View
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Transaction fee"
+        android:text="@string/transaction_fee"
         android:textStyle="bold" />
 
     <TextView
@@ -60,14 +60,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Transaction weight"
+        android:text="@string/transaction_weight"
         android:textStyle="bold" />
 
     <TextView
@@ -75,14 +75,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Transaction size"
+        android:text="@string/transaction_size"
         android:textStyle="bold" />
 
     <TextView
@@ -90,14 +90,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Confirmed?"
+        android:text="@string/confirmed"
         android:textStyle="bold" />
 
     <TextView
@@ -105,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="Loading..." />
+        android:text="@string/loading" />
 
     <View
         android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans_light"
-                    android:text="Inputs"
+                    android:text="@string/inputs"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -167,7 +167,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans_light"
-                    android:text="Outputs"
+                    android:text="@string/outputs"
                     android:textStyle="bold" />
 
                 <LinearLayout

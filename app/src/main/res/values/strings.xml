@@ -1,4 +1,41 @@
 <resources>
     <string name="app_name">Pique</string>
     <string name="block_info">Auto-refreshes every 30 seconds. Data powered by the <a href="https://mempool.space">mempool.space</a> API.</string>
+    <string name="bitcoin_network_explorer">bitcoin network explorer</string>
+    <string name="search_for">Search for...</string>
+    <string name="address">Address</string>
+    <string name="block">Block</string>
+    <string name="tx">Tx</string>
+    <string name="search_address">Search address...</string>
+    <string name="search_block_height_or_hash">Search block height or hash...</string>
+    <string name="search_tx_hash">Search tx hash...</string>
+    <string name="latest_blocks">Latest blocks</string>
+    <string name="no_blocks_found">No blocks found.</string>
+    <string name="viewing_address">Viewing address</string>
+    <string name="loading">Loading...</string>
+    <string name="total_sats_funded">Total sats funded</string>
+    <string name="total_sats_spent">Total sats spent</string>
+    <string name="balance">Balance</string>
+    <string name="last_25_confirmed_transactions">Last 25 confirmed transactions</string>
+    <string name="no_transactions_found_for_this_address">No transactions found for this address.</string>
+    <string name="viewing_transaction">Viewing transaction</string>
+    <string name="transaction_fee">Transaction fee</string>
+    <string name="transaction_weight">Transaction weight</string>
+    <string name="transaction_size">Transaction size</string>
+    <string name="confirmed">Confirmed?</string>
+    <string name="inputs">Inputs</string>
+    <string name="outputs">Outputs</string>
+    <string name="done">Done</string>
+    <string name="total_block_reward">Total block reward</string>
+    <string name="total_subsidy">Total subsidy</string>
+    <string name="total_fees">Total fees</string>
+    <string name="average_transaction_fee">Average transaction fee</string>
+    <string name="fee_rate_range">Fee rate range</string>
+    <string name="blockhash">Blockhash</string>
+    <string name="previous_blockhash">Previous blockhash</string>
+    <string name="amount">Amount</string>
+    <string name="tx_id">Tx ID</string>
+    <string name="total_inputs">Total inputs</string>
+    <string name="total_outputs">Total outputs</string>
+    <string name="fee">Fee</string>
 </resources>
