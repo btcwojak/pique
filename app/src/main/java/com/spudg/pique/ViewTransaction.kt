@@ -68,14 +68,21 @@ class ViewTransaction : AppCompatActivity() {
                             outputs.add(IOModel(output.scriptpubkey_address, output.value))
                         }
 
+                        var blockHeight = txInfo.status.block_height
+                        var blockTime = txInfo.status.block_time
+                        if (txInfo.status.confirmed == "false") {
+                            blockHeight = "N/A"
+                            blockTime = "N/A"
+                        }
+
                         val tx = TransactionModel(
                             txInfo.txid,
                             txInfo.size,
                             txInfo.weight,
                             txInfo.fee,
                             txInfo.status.confirmed,
-                            txInfo.status.block_height,
-                            txInfo.status.block_time,
+                            blockHeight,
+                            blockTime,
                             inputs,
                             outputs
                         )
