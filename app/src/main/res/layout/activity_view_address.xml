@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="This address, 1wiz18xYmhRX6xStj2b9t1rwWX4GKUgpv, has 5 inputs and 2 outputs across 7 transactions." />
+        android:text="Loading..." />
 
     <TextView
         android:id="@+id/tvMempool"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="There are no transactions in the mempool." />
+        android:text="Loading..." />
 
     <View
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvFunded" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvSpent" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvBalance" />
+        android:text="Loading..." />
 
     <View
         android:layout_width="match_parent"

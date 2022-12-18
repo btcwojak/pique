@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="address" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,6 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="amount" />
+        android:text="Loading..." />
 
 </LinearLayout>

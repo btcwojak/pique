@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="tvTxId" />
+            android:text="Loading..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="tvInputs" />
+            android:text="Loading..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="tvOutputs" />
+            android:text="Loading..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="tvFee" />
+            android:text="Loading..." />
 
         <TextView
             android:id="@+id/tvConfirmed"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/open_sans_light"
-            android:text="Confirmed in block 326148 (12 hours ago)" />
+            android:text="Loading..." />
 
     </LinearLayout>
 

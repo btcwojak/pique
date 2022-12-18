@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="This transaction ID is 15e10745f15593a899cef391191bdd3d7c12412cc4696b7bcb669d0feadc8521." />
+        android:text="Loading..." />
 
     <View
         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvFee" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvWeight" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvSize" />
+        android:text="Loading..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_light"
-        android:text="tvConfirmed" />
+        android:text="Loading..." />
 
     <View
         android:layout_width="match_parent"
