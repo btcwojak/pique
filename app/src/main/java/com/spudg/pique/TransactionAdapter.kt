@@ -53,7 +53,7 @@ class TransactionAdapter(
             binding.tvConfirmed.text =
                 "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + Constants.getDate(
                     tx.blockTime,
-                    "dd MMMM yyyy, hh:mm"
+                    "dd MMMM yyyy, HH:mm"
                 ) + " UTC."
 
             binding.llTxRow.setOnClickListener {

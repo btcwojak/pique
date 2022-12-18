@@ -33,13 +33,6 @@ class ViewTransaction : AppCompatActivity() {
         }
     }
 
-    private fun getDate(ms: String, dateFormat: String): String {
-        val formatter = SimpleDateFormat(dateFormat);
-        val calendar = Calendar.getInstance();
-        calendar.timeInMillis = (ms + "000").toLong();
-        return formatter.format(calendar.time);
-    }
-
     private fun getTransaction(txid: String) {
         val url = "https://mempool.space/api/tx/$txid"
         val request = Request.Builder().url(url).build()
@@ -100,9 +93,9 @@ class ViewTransaction : AppCompatActivity() {
                             tx.weight + " WU"
                         if (tx.confirmed == "true") {
                             bindingViewTransaction.tvConfirmed.text =
-                                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + getDate(
+                                "Confirmed in block #" + formatRounded.format(tx.blockHeight.toFloat()) + " on " + Constants.getDate(
                                     tx.blockTime,
-                                    "dd MMMM yyyy, hh:mm"
+                                    "dd MMMM yyyy, HH:mm"
                                 ) + " UTC."
                         } else {
                             bindingViewTransaction.tvConfirmed.text = "Not yet confirmed."
