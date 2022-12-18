@@ -226,6 +226,8 @@
         android:background="@android:color/darker_gray" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBlocks"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
@@ -310,5 +312,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvNoConnection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/open_sans_light"
+        android:text="No internet connection. Unable to reach API."
+        android:gravity="center" />
 
 </LinearLayout>

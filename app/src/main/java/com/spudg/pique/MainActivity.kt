@@ -221,6 +221,8 @@ class MainActivity : AppCompatActivity() {
                 val gson = Gson()
                 if (response.code().toString() == "200") {
                     Handler(Looper.getMainLooper()).post(Runnable {
+                        bindingMain.clBlocks.visibility = View.VISIBLE
+                        bindingMain.tvNoConnection.visibility = View.GONE
                         val blockInfo: Array<Constants.Companion.JsonInfo.BlockSummary> =
                             gson.fromJson(
                                 response.body()?.string(),
@@ -260,6 +262,9 @@ class MainActivity : AppCompatActivity() {
                     })
                 } else {
                     Log.e("Pique", "API returned code " + response.code().toString())
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        bindingMain.tvNoConnection.text = "Error returned from API."
+                    })
                 }
             }
         })
